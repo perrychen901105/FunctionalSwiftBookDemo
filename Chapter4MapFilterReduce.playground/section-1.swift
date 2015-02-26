@@ -93,4 +93,34 @@ func sumUsingReduce(xs: [Int]) -> Int {
     return reduce(xs, 0) { result, x in result + x }
 }
 
+func productUsingReduce(xs: [Int]) -> Int {
+    return reduce(xs, 1, *)
+}
 
+func concatUsingReduce(xs: [String]) -> String {
+    return reduce(xs, "", +)
+}
+
+xs.reduce(0, combine: +)
+
+func flatten<T>(xss: [[T]]) -> [T] {
+    var result: [T] = []
+    for xs in xss {
+        result += xs
+    }
+    return result
+}
+
+let xss = [[1,2,3],[2,3,4],[3,4,5]]
+flatten(xss)
+
+func flattenUsingReduce<T>(xss: [[T]]) -> [T] {
+    return xss.reduce([], combine: { result , xs in result + xs })
+}
+flattenUsingReduce(xss)
+
+func mapUsingReduce<T, U>(xs: [T], f: T -> U) -> [U] {
+    return xs.reduce([], combine: { result, xs in result + [f(xs)]})
+}
+
+mapUsingReduce(xs, { x in x * x})
