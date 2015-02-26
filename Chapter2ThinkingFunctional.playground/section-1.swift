@@ -28,7 +28,7 @@ func shift(offset: Position, region: Region) -> Region {
     }
 }
 
-
+circle(3)(CGPoint(x: 2, y: 2))
 shift(Position(x: 5, y: 5), circle(10))
 
 func invert(region: Region) -> Region {
@@ -54,4 +54,6 @@ func inRange(ownPosition: Position, target: Position, friendly: Position, range:
     let resultRegion = difference(targetRegion, friendlyRegion)
     return resultRegion(target)
 }
+
+invert(circle(3))(CGPoint(x: 1, y: 1))
 
