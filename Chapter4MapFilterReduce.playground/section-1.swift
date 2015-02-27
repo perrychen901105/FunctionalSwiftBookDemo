@@ -84,7 +84,7 @@ func reduce<A, R>(arr: [A],
     combine: (R, A) -> R) -> R {
         var result = initialValue
         for i in arr {
-            result = combine(result, i)
+            result = combine(result , i)
         }
         return result
 }
@@ -111,7 +111,7 @@ func flatten<T>(xss: [[T]]) -> [T] {
     return result
 }
 
-let xss = [[1,2,3],[2,3,4],[3,4,5]]
+let xss = [[],[2,3,4],[3,4,5]]
 flatten(xss)
 
 func flattenUsingReduce<T>(xss: [[T]]) -> [T] {
@@ -120,7 +120,33 @@ func flattenUsingReduce<T>(xss: [[T]]) -> [T] {
 flattenUsingReduce(xss)
 
 func mapUsingReduce<T, U>(xs: [T], f: T -> U) -> [U] {
-    return xs.reduce([], combine: { result, xs in result + [f(xs)]})
+    
+    return xs.reduce([], combine: { result, xs in
+        return result + [f(xs)]
+    })
 }
 
-mapUsingReduce(xs, { x in x * x})
+var testA = mapUsingReduce(xs, { x in x * x })
+println(testA)
+
+func filterUsingReduce<T>(xs: [T], check: T -> Bool) -> [T] {
+    return xs.reduce([], combine: { result ,x in
+        return check(x) ? result + [x] : result
+    })
+}
+
+
+// combine all functions
+struct City {
+    let name: String
+    let population: Int
+}
+
+let paris = City(name: "Paris", population: 2243)
+let madrid = City(name: "Madrid", population: 3216)
+let amsterdam = City(name: "Amsterdam", population: 811)
+let berlin = City(name: "Berlin", population: 3397)
+
+let cities = [paris, madrid, amsterdam, berlin]
+
+
