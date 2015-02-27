@@ -149,4 +149,32 @@ let berlin = City(name: "Berlin", population: 3397)
 
 let cities = [paris, madrid, amsterdam, berlin]
 
+func scale(city: City) -> City {
+    return City(name: city.name, population: city.population * 1000)
+}
+
+cities.filter({ city in city.population > 1000 })
+    .map(scale)
+    .reduce("City: Population", combine: { result, c in
+        return result + "\n" + "\(c.name) : \(c.population)"
+    })
+
+
+func curry<A, B, C>(f: (A, B) -> C) -> A -> B -> C {
+    return { x in { y in f(x, y) } }
+}
+func paraFunc(pa: Int, pb: Int) -> Int {
+    return pa - pb
+}
+var cab = curry(paraFunc)
+var newCab = cab(4)
+println(newCab)
+newCab(5)
+cab(2)(3)
+
+cab(2)(3)
+println(cab)
+
+
+
 
