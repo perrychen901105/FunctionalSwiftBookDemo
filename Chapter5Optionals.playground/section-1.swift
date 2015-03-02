@@ -101,19 +101,28 @@ infix operator >>= {}
 
 func >>=<U, T>(optional: T?, f: T -> U?) -> U? {
     if let x = optional {
+    println("the x is \(x)")
         return f(x)
     } else {
         return nil
     }
 }
 
+//var testA: Int = 1
+//var testB: Int = 2
+//var resultD = testA >>= { x in testA + testB }
+//var resultE: () = testA >>= testB
+//println(resultD)
+
 func addOptionals2(optionalX: Int?, optionalY: Int?) -> Int? {
     return optionalX >>= { x in
-        optionalY >>= { y in
-            x + y
+        return optionalY >>= { y in
+            return x + y
         }
     }
 }
+
+//addOptionals2(2, 3)
 
 func populationOfCapital2(country: String) -> Int? {
     return capitals[country] >>= { capital in
@@ -122,4 +131,9 @@ func populationOfCapital2(country: String) -> Int? {
         }
     }
 }
+
+func attributedCapital(country: String) -> NSAttributedString? {
+    return nil
+}
+
 
