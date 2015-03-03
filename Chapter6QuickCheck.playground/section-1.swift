@@ -46,3 +46,25 @@ extension String: Arbitrary {
 String.arbitrary()
 
 
+// Check function
+func check1<A: Arbitrary>(message: String, prop: A -> Bool) -> () {
+    for _ in 0..<11 {
+        let value = A.arbitrary()
+        if !prop(value) {
+            println("\"\(message)\" doesn't hold: \(value)")
+            return
+        }
+    }
+    println("\"\(message)\" passed \(11) tests.")
+}
+
+func area(size: CGSize) -> CGFloat {
+    return size.width * size.height
+}
+
+check1("Area should be at least 0") {
+    size in area(size) >= 0
+}
+
+
+
