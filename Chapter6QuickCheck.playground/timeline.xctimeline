@@ -3,7 +3,11 @@
    version = "3.0">
    <TimelineItems>
       <LoggerValueHistoryTimelineItem
+<<<<<<< HEAD
          documentLocation = "#CharacterRangeLen=50&amp;CharacterRangeLoc=350&amp;EndingColumnNumber=66&amp;EndingLineNumber=18&amp;StartingColumnNumber=16&amp;StartingLineNumber=18&amp;Timestamp=446990123.122079">
+=======
+         documentLocation = "#CharacterRangeLen=13&amp;CharacterRangeLoc=1866&amp;EndingColumnNumber=14&amp;EndingLineNumber=86&amp;StartingColumnNumber=1&amp;StartingLineNumber=86&amp;Timestamp=447145166.314051">
+>>>>>>> origin/master
       </LoggerValueHistoryTimelineItem>
    </TimelineItems>
 </Timeline>
