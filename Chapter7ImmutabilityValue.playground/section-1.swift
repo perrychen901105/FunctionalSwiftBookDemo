@@ -29,3 +29,41 @@ sameClassPoint.x = 3
 
 println("original is \(classPoint.x), and new is \(sameClassPoint.x)")
 
+func setStructToOrigin(var point: PointStruct) -> PointStruct {
+    point.x = 0
+    point.y = 0
+    return point
+}
+
+var structOrigin: PointStruct = setStructToOrigin(structPoint)
+println("original is \(structPoint.x), and new is \(structOrigin.x)")
+
+func setClassToOrigin(point: PointClass) -> PointClass {
+    point.x = 0
+    point.y = 0
+    return point
+}
+
+var classOrigin = setClassToOrigin(classPoint)
+println("original is \(classPoint.x), and new is \(classOrigin.x)")
+
+let immutablePoint = PointStruct(x: 0, y: 0)
+
+var mutablePoint = PointStruct(x: 1, y: 1)
+mutablePoint.x = 3
+
+struct ImmutablePointStruct {
+    let x: Int
+    let y: Int
+}
+
+var immutablePoint2 = ImmutablePointStruct(x: 1, y: 1)
+
+
+
+
+
+
+
+
+
