@@ -119,6 +119,16 @@ func setInsert<T: Comparable>(x: T, tree: Tree<T>) -> Tree<T> {
     }
 }
 
+struct Trie<T: Hashable> {
+    let isElem: Bool
+    let children: [T: Trie<T>]
+}
+
+func empty<T: Hashable>() -> Trie<T> {
+    return Trie(isElem: false, children: [T: Trie<T>]())
+}
+
+
 
 
 
