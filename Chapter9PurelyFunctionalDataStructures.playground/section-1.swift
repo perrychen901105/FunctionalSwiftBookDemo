@@ -128,6 +128,70 @@ func empty<T: Hashable>() -> Trie<T> {
     return Trie(isElem: false, children: [T: Trie<T>]())
 }
 
+func elements<T: Hashable>(trie: Trie<T>) -> [[T]] {
+    var result: [[T]] = trie.isElem ? [[]] : []
+    for (key, value) in trie.children {
+        result += elements(value).map( { xs in [key] + xs} )
+    }
+    return result
+}
+
+extension Array {
+    var decompose : (head: T, tail: [T])? {
+        return (count > 0) ? (self[0], Array(self[1..<count])) : nil
+    }
+}
+
+func sum(xs: [Int]) -> Int {
+    if let (head, tail) = xs.decompose {
+        return (head + sum(tail))
+    } else {
+        return 0
+    }
+}
+
+func qsort(var input: [Int]) -> [Int] {
+    if let (pivot, rest) = input.decompose {
+        let lesser = rest.filter { $0 < pivot }
+        let greater = rest.filter { $0 >= pivot }
+        return qsort(lesser) + [pivot] + qsort(greater)
+    } else {
+        return []
+    }
+}
+
+func lookup<T: Hashable>(key: [T], trie: Trie<T>) -> Bool {
+    if let (head, tail) = key.decompose {
+        if let subtrie = trie.children[head] {
+            return lookup(tail, subtrie)
+        } else {
+            return false
+        }
+    } else {
+        return trie.isElem
+    }
+}
+
+func withPrefix<T: Hashable>(prefix: [T], trie: Trie<T>) -> Trie<T>? {
+    if let (head, tail) = prefix.decompose {
+        if let remainder = trie.children[head] {
+            return withPrefix(tail, remainder)
+        } else {
+            return nil
+        }
+    } else {
+        return trie
+    }
+}
+
+func autocomplete<T: Hashable>(key: [T], trie: Trie<T>) -> [[T]] {
+    if let prefixTrie = withPrefix(key, trie) {
+        return elements(prefixTrie)
+    } else {
+        return []
+    }
+}
+
 
 
 
