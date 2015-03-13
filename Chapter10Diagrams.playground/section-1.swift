@@ -60,5 +60,11 @@ func fit(alignment: Vector2D,
         return CGRect(origin: rect.origin - space.point, size: size)
 }
 
-
+func draw(context: CGContextRef, bounds: CGRect, diagram: Diagram) {
+    switch diagram {
+    case .Prim(let size, .Ellipse) {
+        
+        }
+    }
+}
 
