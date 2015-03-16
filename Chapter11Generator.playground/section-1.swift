@@ -159,7 +159,6 @@ func removeElement<T>(var array: [T]) -> GeneratorOf<[T]> {
         return nil
     }
 }
-
 Array(removeElement([1, 2 ,3]))
 
 /**
